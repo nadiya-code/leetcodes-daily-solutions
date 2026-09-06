@@ -15,20 +15,17 @@ public:
         if(root==NULL)return;
         stack<TreeNode*>st;
         st.push(root);
-        TreeNode* node=st.top();
-        st.pop();
-        if(node->right!=NULL)st.push(node->right);
-        if(node->left!=NULL)st.push(node->left);
         while(!st.empty()){
             int size=st.size();
             for(int i=0;i<size;i++){
-                root->left=NULL;
-                root->right=st.top();
-                root=root->right;
                 TreeNode* node=st.top();
                 st.pop();
                 if(node->right!=NULL)st.push(node->right);
                 if(node->left!=NULL)st.push(node->left);
+                if(!st.empty()){
+                    node->right=st.top();
+                }
+                node->left=NULL;
             }
         }
     }
