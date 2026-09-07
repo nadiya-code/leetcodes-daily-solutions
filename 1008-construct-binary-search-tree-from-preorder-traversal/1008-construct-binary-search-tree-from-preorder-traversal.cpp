@@ -18,7 +18,6 @@ public:
         stack<TreeNode*>st;
         TreeNode* root= new TreeNode(preorder[0]);
         st.push(root);
-        TreeNode* ans=root;
         int n=preorder.size();
         for(int i=1;i<n;i++){
             TreeNode* node=new TreeNode(preorder[i]);
@@ -36,6 +35,6 @@ public:
                 st.push(node);
             }
         }
-        return ans;
+        return root;
     }
 };
