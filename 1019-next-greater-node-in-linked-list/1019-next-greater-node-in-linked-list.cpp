@@ -10,22 +10,34 @@
  */
 class Solution {
 public:
+    ListNode* reversed(ListNode* head){
+        ListNode* reversed=NULL;
+        while(head){
+            ListNode* Node=head->next;
+            head->next=reversed;
+            reversed=head;
+            head=Node;
+        }
+        return reversed;
+    }
     vector<int> nextLargerNodes(ListNode* head) {
         vector<int>nodes;
         stack<ListNode*>st;
-        while(head){
-            ListNode*curr=head->next;
-            while(curr && head->val>=curr->val){
-                curr=curr->next;
+        ListNode* dummy=reversed(head);
+        while(dummy){
+            while(!st.empty()&&st.top()->val<=dummy->val){
+                st.pop();
             }
-            if(curr){
-                nodes.push_back(curr->val);
+            if(!st.empty()){
+                nodes.push_back(st.top()->val);
             }
             else{
                 nodes.push_back(0);
             }
-            head=head->next;
+            st.push(dummy);
+            dummy=dummy->next;
         }
+        reverse(nodes.begin(),nodes.end());
         return nodes;
     }
 };
