@@ -2,16 +2,23 @@ class Solution {
 public:
     int trap(vector<int>& height) {
         int n=height.size();
-        vector<int>SuffixMax(height.begin(),height.end());
-        for(int i=n-2;i>=0;i--){
-            SuffixMax[i]=max(SuffixMax[i+1],SuffixMax[i]);
-        }
         int total=0;
-        int prefixMax=height[0];
-        for(int i=0;i<n;i++){
-            prefixMax=max(prefixMax,height[i]);
-            if(prefixMax>height[i] && SuffixMax[i]>height[i]){
-                total+=min(prefixMax,SuffixMax[i])-height[i];
+        int right=n-1;
+        int left=0;
+        int leftMax=0;
+        int rightMax=0;
+        while(left<=right){
+            if(height[left]<=height[right]){
+                if(height[left]>=leftMax){
+                    leftMax=height[left];
+                }
+                total+=leftMax-height[left++];
+            }
+            else{
+                if(height[right]>=rightMax){
+                    rightMax=height[right];
+                }
+                total+=rightMax-height[right--];
             }
         }
         return total;
