@@ -4,7 +4,8 @@ public:
         long long summin=0;
         long long summax=0;
         int n=nums.size();
-        vector<pair<int,int>>left(n);
+        vector<int>leftmin(n);
+        vector<int>leftmax(n);
         stack<int>stmax;
         stack<int>stmin;
         for(int i=0;i<n;i++){
@@ -15,21 +16,22 @@ public:
                 stmax.pop();
             }
             if(stmin.empty()){
-                left[i].first=-1;
+                leftmin[i]=-1;
             }
             else{
-                left[i].first=stmin.top();
+                leftmin[i]=stmin.top();
             }
             if(stmax.empty()){
-                left[i].second=-1;
+                leftmax[i]=-1;
             }
             else{
-                left[i].second=stmax.top();
+                leftmax[i]=stmax.top();
             }
             stmin.push(i);
             stmax.push(i);
         }
-        vector<pair<int,int>>right(n);
+        vector<int>rightmin(n);
+        vector<int>rightmax(n);
         while(!stmin.empty()){
             stmin.pop();
         }
@@ -44,23 +46,23 @@ public:
                 stmax.pop();
             }
             if(stmin.empty()){
-                right[i].first=n;
+                rightmin[i]=n;
             }
             else{
-                right[i].first=stmin.top();
+                rightmin[i]=stmin.top();
             }
             if(stmax.empty()){
-                right[i].second=n;
+                rightmax[i]=n;
             }
             else{
-                right[i].second=stmax.top();
+                rightmax[i]=stmax.top();
             }
             stmin.push(i);
             stmax.push(i);
         }
         for(int i=0;i<n;i++){
-            summin+=(1LL*nums[i]*(i-left[i].first)*(right[i].first-i));
-            summax+=(1LL*nums[i]*(i-left[i].second)*(right[i].second-i));
+            summin+=(1LL*nums[i]*(i-leftmin[i])*(rightmin[i]-i));
+            summax+=(1LL*nums[i]*(i-leftmax[i])*(rightmax[i]-i));
         }
         return summax-summin;
     }
