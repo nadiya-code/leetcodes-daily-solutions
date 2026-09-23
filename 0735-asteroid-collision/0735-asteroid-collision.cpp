@@ -25,10 +25,7 @@ public:
                     st.pop();
                 }
             }
-            else if(!st.empty() && st.top()<0 && asteroids[i]>0){
-                st.push(asteroids[i]);
-            }
-            else if(!st.empty() && st.top()<0 && asteroids[i]<0){
+            else if(!st.empty() && ((st.top()<0 && asteroids[i]>0)||(st.top()<0 && asteroids[i]<0))){
                 st.push(asteroids[i]);
             }
         }
