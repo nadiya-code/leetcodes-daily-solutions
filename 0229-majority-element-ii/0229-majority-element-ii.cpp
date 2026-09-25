@@ -3,13 +3,16 @@ public:
     vector<int> majorityElement(vector<int>& nums) {
         vector<int>array;
         int n=nums.size();
-        unordered_map<int,int>mp;
-        for(int &num :nums){
-            mp[num]++;
-        }
-        for(auto &m:mp){
-            if(m.second>n/3){
-                array.push_back(m.first);
+        sort(nums.begin(),nums.end());
+        for(int i=0;i+n/3<n;i++){
+            if(nums[i+n/3]==nums[i]){
+                array.push_back(nums[i]);
+                int prev=nums[i];
+                i+=n/3+1;
+                while(i<n && nums[i]==prev){
+                    i++;
+                }
+                i--;
             }
         }
         return array;
