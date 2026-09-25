@@ -8,7 +8,7 @@ public:
             if(nums[i+n/3]==nums[i]){
                 array.push_back(nums[i]);
                 int prev=nums[i];
-                i+=n/3+1;
+                i+=n/3;
                 while(i<n && nums[i]==prev){
                     i++;
                 }
