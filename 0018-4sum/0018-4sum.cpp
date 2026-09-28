@@ -4,7 +4,7 @@ public:
         int n=nums.size();
         vector<vector<int>>quad;
         sort(nums.begin(),nums.end());
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n-3;i++){
             if(i>0 && nums[i]==nums[i-1]){
                 continue;
             }
