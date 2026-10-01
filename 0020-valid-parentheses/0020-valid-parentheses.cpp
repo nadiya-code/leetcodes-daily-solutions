@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        int n=s.size();
+        stack<char>st;
+        unordered_map<char,char> mp;
+        mp[')']='(';
+        mp['}']='{';
+        mp[']']='[';
+        for(char &c: s){
+            if(c=='('||c=='{'||c=='['){
+                st.push(c);
+            }
+            else{
+                if(st.empty()||st.top()!=mp[c]){
+                    return false;
+                }
+                st.pop();
+            }
+        }
+        if(st.empty()){
+            return true;
+        }
+        return false;
+    }
+};
