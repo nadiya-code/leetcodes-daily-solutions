@@ -5,28 +5,22 @@ public:
         if(n<=k){
             return "0";
         }
-        string s="";
-        stack<char>st;
+        string st="";
         for(int i=0;i<n;i++){
-            while(k>0 && !st.empty() && st.top()>num[i]){
-                st.pop();
+            while(k>0 && !st.empty() && st.back()>num[i]){
+                st.pop_back();
                 k--;
             }
-            st.push(num[i]);
+            st.push_back(num[i]);
         }
-        while(!st.empty()){
-            s+=st.top();
-            st.pop();
-        }
-        reverse(s.begin(),s.end());
         if(k>0){
-            s=s.substr(0,s.size()-k);
+            st=st.substr(0,st.size()-k);
         }
         int i=0;
-        while(i<s.size() && s[i]=='0'){
+        while(i<st.size() && st[i]=='0'){
             i++;
         }
-        s=s.substr(i);
-        return s.empty()? "0":s;
+        st=st.substr(i);
+        return st.empty()? "0":st;
     }
 };
