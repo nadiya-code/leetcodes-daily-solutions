@@ -4,14 +4,16 @@ public:
         int n=nums.size();
         int length=0;
         int left=0;
-        deque<int>dq;
+        int zeros=0;
         for(int i=0;i<n;i++){
             if(nums[i]==0){
-                dq.push_back(i);
+                zeros++;
             }
-            if(dq.size()>k){
-                left=dq.front()+1;
-                dq.pop_front();
+            while(zeros>k && left<n){
+                if(nums[left]==0){
+                    zeros--;
+                }
+                left++;
             }
             length=max(length,i-left+1);
         }
