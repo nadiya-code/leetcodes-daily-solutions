@@ -2,9 +2,6 @@ class Solution {
 public:
     int longestOnes(vector<int>& nums, int k) {
         int n=nums.size();
-        if(n<=k){
-            return n;
-        }
         int length=0;
         int left=0;
         deque<int>dq;
