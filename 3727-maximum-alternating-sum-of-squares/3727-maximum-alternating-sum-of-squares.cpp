@@ -2,7 +2,7 @@ class Solution {
 public:
     long long maxAlternatingSum(vector<int>& nums) {
         sort(nums.begin(),nums.end(),[](int a,int b){
-            return abs(a)<abs(b);
+            return abs(1LL*a)<abs(1LL*b);
         });
         int n=nums.size();
         long long sum=0;
